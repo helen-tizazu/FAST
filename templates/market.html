@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="container mx-auto py-10 px-6 max-w-6xl">
+    <div class="bg-green-900 p-10 rounded-[3rem] text-white mb-12">
+        <h1 class="text-4xl font-black uppercase italic">Market Dashboard</h1>
+    </div>
+    <div class="bg-white rounded-[2.5rem] border shadow-xl overflow-hidden">
+        <table class="w-full text-left">
+            <thead>
+                <tr class="bg-slate-50 text-[10px] font-black uppercase text-slate-400">
+                    <th class="p-6">Crop Variety</th>
+                    <th class="p-6">Avg Price (ETB)</th>
+                    <th class="p-6">Daily Trend</th>
+                </tr>
+            </thead>
+            <tbody class="text-sm font-bold text-green-950">
+                {% for item in prices %}
+                <tr class="border-b">
+                    <td class="p-6">{{ item.crop_name }}</td>
+                    <td class="p-6">{{ item.price }} ETB</td>
+                    <td class="p-6 uppercase text-[10px] {{ 'text-green-600' if item.trend == 'up' else 'text-slate-400' }}">
+                        {{ '▲ Rising' if item.trend == 'up' else '— Stable' }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="container mx-auto py-10 px-6 max-w-5xl bg-white min-h-screen">
+    <div class="mb-16 border-l-8 border-green-600 pl-8">
+        <h1 class="text-5xl font-black text-green-950 uppercase italic leading-none">Field Stories</h1>
+        <p class="text-slate-400 mt-2 font-bold uppercase text-[10px] tracking-widest">Latest Updates from HelenAgritech</p>
+    </div>
+
+    <div class="space-y-20">
+        {% if news_items %}
+            {% for item in news_items %}
+            <section class="group border-b border-slate-100 pb-16 transition-all hover:bg-slate-50 p-6 rounded-3xl">
+                <div class="flex flex-col md:flex-row gap-10">
+                    <div class="w-24 h-24 bg-green-900 rounded-3xl flex items-center justify-center text-4xl shadow-xl shadow-green-100">
+                        📢
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-4">
+                            <span class="text-[10px] font-black text-orange-600 uppercase bg-orange-50 px-3 py-1 rounded-full">CEO Update</span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase">{{ item.date_posted.strftime('%d %B %Y') }}</span>
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-slate-700 text-xl font-semibold leading-relaxed">{{ item.content }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% endfor %}
+        {% else %}
+            <div class="text-center py-20 bg-slate-50 rounded-[3rem] border-2 border-dashed border-slate-200">
+                <div class="text-6xl mb-4">🌾</div>
+                <h3 class="text-xl font-bold text-slate-800">No stories yet.</h3>
+                <p class="text-slate-500">Check back later for updates from the field.</p>
+            </div>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

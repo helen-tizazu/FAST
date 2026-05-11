@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="container mx-auto py-10 px-6 max-w-6xl bg-white">
+    
+    <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-green-950 tracking-tighter uppercase italic">Crop Doctor</h1>
+        <p class="text-slate-400 font-bold text-[10px] uppercase tracking-[0.3em] mt-2">Instant Disease Detection & Treatment</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 items-stretch">
+        
+        <div class="bg-white p-8 rounded-[3rem] border-2 border-slate-100 shadow-sm flex flex-col items-center text-center transition-all hover:border-green-400">
+            <div class="w-12 h-12 bg-slate-100 text-slate-500 rounded-full flex items-center justify-center font-black mb-6">1</div>
+            
+            <h3 class="text-lg font-black text-green-950 uppercase tracking-tight mb-2">Take Photo</h3>
+            <p class="text-xs text-slate-500 font-medium mb-8">Upload a clear picture of the leaf to begin the scan.</p>
+            
+            <form action="/detect" method="POST" enctype="multipart/form-data" class="w-full flex-grow flex flex-col">
+                <div class="flex-grow w-full border-2 border-dashed border-slate-100 rounded-[2rem] p-6 bg-slate-50/50 flex flex-col justify-center items-center mb-8 group cursor-pointer relative overflow-hidden">
+                    {% if user_image %}
+                        <img src="{{ url_for('static', filename='uploads/' + user_image) }}" class="absolute inset-0 w-full h-full object-cover rounded-[2rem]">
+                    {% else %}
+                        <span class="text-5xl mb-4 group-hover:scale-110 transition-transform">📸</span>
+                        <p class="text-[10px] font-black text-slate-400 uppercase">Drop Image Here</p>
+                    {% endif %}
+                </div>
+
+                <input type="file" name="file" class="hidden" id="leafUpload" onchange="this.form.submit()">
+                
+                <button type="button" onclick="document.getElementById('leafUpload').click()" class="w-full bg-green-900 text-white py-4 rounded-2xl font-black uppercase text-[11px] tracking-widest shadow-lg hover:bg-green-700 transition-all">
+                    {% if user_image %}Scan Another{% else %}Select Leaf{% endif %}
+                </button>
+            </form>
+        </div>
+
+        <div class="bg-yellow-400 p-8 rounded-[3rem] border-2 border-yellow-500 shadow-md flex flex-col items-center text-center transform hover:scale-[1.02] transition-all">
+            <div class="w-12 h-12 bg-white/40 text-green-950 rounded-full flex items-center justify-center font-black mb-6">2</div>
+            
+            <h3 class="text-lg font-black text-green-950 uppercase tracking-tight mb-2">Disease Name</h3>
+            <p class="text-xs text-green-900/70 font-bold mb-8 uppercase italic">System Identification</p>
+            
+            <div class="flex-grow flex items-center justify-center w-full">
+                <div class="bg-white/90 w-full py-10 px-4 rounded-[2rem] border border-yellow-600 shadow-inner">
+                    {% if result %}
+                        <span class="text-2xl mb-2 block">{{ result.icon }}</span>
+                        <span class="text-xl font-black text-green-950 uppercase tracking-tighter">{{ result.diagnosis }}</span>
+                        <p class="text-[10px] font-bold text-green-600 mt-2">Confidence: {{ result.confidence }}</p>
+                    {% else %}
+                        <span class="text-xl font-black text-green-950 uppercase tracking-tighter">Waiting...</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <p class="mt-8 text-[10px] font-black text-green-900 uppercase tracking-widest opacity-60">Scanning Powered by HelenAgritech AI</p>
+        </div>
+
+        <div class="bg-green-900 p-8 rounded-[3rem] shadow-2xl flex flex-col items-center text-left text-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+            
+            <div class="w-12 h-12 bg-green-400 text-green-950 rounded-full flex items-center justify-center font-black mb-6 self-center">3</div>
+            
+            <h3 class="text-lg font-black uppercase tracking-tight mb-2 self-center text-green-400">Treatment</h3>
+            <p class="text-xs text-green-100/60 font-medium mb-8 text-center">Expert recommended solution</p>
+            
+            <div class="flex-grow w-full space-y-4">
+                <div class="bg-white/10 p-5 rounded-2xl border border-white/10">
+                    <p class="text-[10px] font-black text-green-300 uppercase tracking-widest mb-2">Instructions</p>
+                    <p class="text-[11px] text-green-50 leading-relaxed italic">
+                        {% if result %}{{ result.treatment }}{% else %}Application steps will appear here.{% endif %}
+                    </p>
+                </div>
+                <div class="bg-white/10 p-5 rounded-2xl border border-white/10">
+                    <p class="text-[10px] font-black text-green-300 uppercase tracking-widest mb-2">Product Advice</p>
+                    <p class="text-[11px] text-green-50 leading-relaxed italic">
+                        {% if result %}Visit the nearest Gondar agricultural hub for recommended supplies.{% else %}Organic & Chemical recommendations.{% endif %}
+                    </p>
+                </div>
+            </div>
+
+            <button class="mt-8 w-full bg-green-400 text-green-900 py-4 rounded-2xl font-black uppercase text-[11px] tracking-widest hover:bg-white transition-all">
+                Find Local Supplier
+            </button>
+        </div>
+
+    </div>
+
+</main>
+{% endblock %}

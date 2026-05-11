@@ -1,0 +1,119 @@
+/* --- HELEN AGRITECH CORE STYLES --- */
+:root {
+    --ethiopia-green: #064e3b; /* Deep Forest Green */
+    --ethiopia-gold: #fbbf24;  /* Vibrant Gold */
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* --- GLASSMORPHISM EFFECT --- */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+}
+
+/* --- CUSTOM ANIMATIONS --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* --- NAVIGATION LINKS --- */
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--ethiopia-gold);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: var(--ethiopia-gold);
+}
+
+/* --- CARDS & BUTTONS --- */
+.feature-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.btn-primary {
+    background-color: var(--ethiopia-gold);
+    color: var(--ethiopia-green);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 12px;
+}
+
+.btn-primary:hover {
+    background-color: white;
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px -3px rgba(251, 191, 36, 0.3);
+}
+
+/* --- DASHBOARD ELEMENTS --- */
+.stat-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+    border-left: 5px solid var(--ethiopia-green);
+}
+
+/* --- INPUTS & TEXTAREAS --- */
+input, textarea {
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--ethiopia-green);
+    box-shadow: 0 0 0 4px rgba(6, 78, 59, 0.1);
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+    .hero-text {
+        font-size: 2.5rem;
+    }
+}

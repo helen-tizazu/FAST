@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="min-h-[80vh] flex items-center bg-green-900 relative overflow-hidden">
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-[#FFC107]/10 rounded-full blur-3xl"></div>
+    
+    <div class="container mx-auto max-w-7xl px-6 relative z-10">
+        <div class="max-w-3xl space-y-8 animate-fade">
+            <div class="inline-block bg-green-800/50 border border-green-700 px-4 py-1.5 rounded-full text-[#FFC107] text-xs font-bold uppercase tracking-widest">
+                ✨ Empowering 10,000+ Farmers
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter">
+                Smart Farming <br> <span class="text-[#FFC107] underline decoration-green-500">Starts Here.</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-green-100/80 font-medium leading-relaxed">
+                Experience the power of Ethiopia's leading AI crop diagnostic tool. Scan, detect, and protect your harvest in seconds.
+            </p>
+            
+            <div class="flex flex-wrap gap-5 pt-4">
+                <a href="/ai-detection" class="bg-white text-green-900 px-10 py-5 rounded-2xl font-black uppercase tracking-widest shadow-2xl hover:-translate-y-1 hover:bg-[#FFC107] transition-all">
+                    Launch AI Scanner
+                </a>
+                
+                <a href="/news" class="bg-transparent text-white border-2 border-white/80 px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-white/10 hover:border-white transition-all">
+                    View Impact
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-black text-green-900 mb-16">3 Steps to Protect Your Harvest</h2>
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="group p-8 rounded-3xl hover:bg-green-50 transition-all duration-300 border border-transparent hover:border-green-100">
+                <div class="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-300">
+                    <span class="text-4xl">📸</span>
+                </div>
+                <h3 class="text-xl font-bold text-green-950 mb-4">Capture</h3>
+                <p class="text-gray-600">Take a clear photo of the infected crop leaf using your phone camera.</p>
+            </div>
+
+            <div class="group p-8 rounded-3xl hover:bg-green-50 transition-all duration-300 border border-transparent hover:border-green-100">
+                <div class="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-300">
+                    <span class="text-4xl">🧠</span>
+                </div>
+                <h3 class="text-xl font-bold text-green-950 mb-4">Analyze</h3>
+                <p class="text-gray-600">Our University of Gondar trained AI scans for complex disease patterns.</p>
+            </div>
+
+            <div class="group p-8 rounded-3xl hover:bg-green-50 transition-all duration-300 border border-transparent hover:border-green-100">
+                <div class="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-300">
+                    <span class="text-4xl">🛡️</span>
+                </div>
+                <h3 class="text-xl font-bold text-green-950 mb-4">Protect</h3>
+                <p class="text-gray-600">Receive instant, localized treatment advice to save your harvest.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
