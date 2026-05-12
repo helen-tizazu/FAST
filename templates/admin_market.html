@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>CEO Market Management</h2>
+    <p>Update crop prices for the Gondar region.</p>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary mb-3">Back to Dashboard</a>
+    
+    <div class="card p-4 mb-4">
+        <form action="{{ url_for('admin_market') }}" method="POST">
+            <div class="mb-3">
+                <label>Crop Name</label>
+                <input type="text" name="crop_name" class="form-control" placeholder="e.g. White Teff" required>
+            </div>
+            <div class="mb-3">
+                <label>Current Price</label>
+                <input type="text" name="price" class="form-control" placeholder="e.g. 120 ETB/kg" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Market</button>
+        </form>
+    </div>
+
+    <h3>Current Price List</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Crop</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in prices %}
+            <tr>
+                <td>{{ item.crop_name }}</td>
+                <td>{{ item.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
